@@ -3,7 +3,25 @@
 <head>
   <title>Priti & Achintya</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
+  <style>.emoji {
+  position: fixed;
+  font-size: 22px;
+  animation: floatUp 6s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(100vh);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-10vh);
+    opacity: 0;
+  }
+}
+
     body {
       font-family: Arial, sans-serif;
       text-align: center;
@@ -39,7 +57,12 @@
 
 <body>
 
-  <img id="catImg" class="cat" src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif">
+<div id="stickers">
+  <img class="cat" id="img1" src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif">
+  <img class="cat" id="img2" src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif">
+  <img class="cat" id="img3" src="https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif">
+</div>
+
   <h1 id="question">Hey Priti, do you love Achintya? 💖</h1>
 
   <button class="yes" onclick="sayYes()">Yes</button>
@@ -83,7 +106,86 @@
       </h1>
     `;
   }
+<script>
+  let step = 0;
+
+  function changeStickers(a, b, c) {
+    document.getElementById("img1").src = a;
+    document.getElementById("img2").src = b;
+    document.getElementById("img3").src = c;
+  }
+
+  function sayNo() {
+    step++;
+
+    if (step === 1) {
+      document.getElementById("question").innerText =
+        "Think again, princess 👑";
+      changeStickers(
+        "https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif",
+        "https://media.giphy.com/media/l2QDM9Jnim1YVILXa/giphy.gif",
+        "https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif"
+      );
+    } 
+    else if (step === 2) {
+      document.getElementById("question").innerText =
+        "Why are you doing this?\nDon't you know how much I love you?\nThink again please 🥺❤️";
+      changeStickers(
+        "https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif",
+        "https://media.giphy.com/media/l0MYGb1LuZ3n7dRnO/giphy.gif",
+        "https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif"
+      );
+    } 
+    else if (step === 3) {
+      document.getElementById("question").innerText =
+        "Ok that's enough… now see what I can do 😌🔥";
+      changeStickers(
+        "https://media.giphy.com/media/l2QDM9Jnim1YVILXa/giphy.gif",
+        "https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif",
+        "https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif"
+      );
+      document.getElementById("noBtn").onmouseover = moveNo;
+    }
+  }
+
+  function moveNo() {
+    const btn = document.getElementById("noBtn");
+    btn.style.left = Math.random() * 200 - 100 + "px";
+    btn.style.top = Math.random() * 200 - 100 + "px";
+  }
+
+  function sayYes() {
+    document.body.innerHTML = `
+      <h1>
+        Hey, I know that you love me ❤️<br><br>
+        And I also love you 💖<br><br>
+        I will always be there for you to make you happy 🥺<br><br>
+        My one and only love…<br><br>
+        I love you Priti 💋😘
+      </h1>
+      <img class="cat" src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif">
+      <img class="cat" src="https://media.giphy.com/media/l0MYGb1LuZ3n7dRnO/giphy.gif">
+      <img class="cat" src="https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif">
+    `;
+  }
 </script>
+  <script>
+  setInterval(() => {
+    const emoji = document.createElement("div");
+    emoji.className = "emoji";
+    emoji.innerText = Math.random() > 0.5 ? "💖" : "💚";
+    emoji.style.left = Math.random() * 100 + "vw";
+    emoji.style.animationDuration = (4 + Math.random() * 3) + "s";
+    document.body.appendChild(emoji);
+
+    setTimeout(() => {
+      emoji.remove();
+    }, 7000);
+  }, 300);
+    </script>
+
+
+
 
 </body>
 </html>
