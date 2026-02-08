@@ -8,10 +8,14 @@
       font-family: Arial, sans-serif;
       text-align: center;
       background: #ffe6f0;
-      padding: 40px;
+      padding: 30px;
     }
     h1 {
       color: #d63384;
+    }
+    .cat {
+      width: 180px;
+      margin: 20px auto;
     }
     button {
       padding: 12px 25px;
@@ -20,25 +24,66 @@
       border: none;
       border-radius: 25px;
       cursor: pointer;
+      position: relative;
     }
     .yes {
       background-color: #ff4d6d;
       color: white;
     }
     .no {
-      background-color: #adb5bd;
+      background-color: #6c757d;
       color: white;
-      position: relative;
     }
   </style>
 </head>
 
 <body>
 
-  <h1>Hey Priti, do you love Achintya? 💖</h1>
+  <img id="catImg" class="cat" src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif">
+  <h1 id="question">Hey Priti, do you love Achintya? 💖</h1>
 
-  <button class="yes">Yes</button>
-  <button class="no">No</button>
+  <button class="yes" onclick="sayYes()">Yes</button>
+  <button class="no" id="noBtn" onclick="sayNo()">No</button>
+
+<script>
+  let step = 0;
+
+  function sayNo() {
+    step++;
+
+    if (step === 1) {
+      document.getElementById("question").innerText = "Think again, princess 👑";
+    } 
+    else if (step === 2) {
+      document.getElementById("question").innerText =
+        "Why are you doing this?\nDon't you know how much I love you?\nThink again please 🥺❤️";
+    } 
+    else if (step === 3) {
+      document.getElementById("question").innerText =
+        "Ok that's enough… now see what I can do 😌🔥";
+      document.getElementById("noBtn").onmouseover = moveNo;
+    }
+  }
+
+  function moveNo() {
+    const btn = document.getElementById("noBtn");
+    btn.style.left = Math.random() * 200 - 100 + "px";
+    btn.style.top = Math.random() * 200 - 100 + "px";
+  }
+
+  function sayYes() {
+    document.body.innerHTML = `
+      <img class="cat" src="https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif">
+      <h1>
+        Hey, I know that you love me ❤️<br><br>
+        And I also love you.<br><br>
+        I will always be there for you to make you happy.<br><br>
+        My one and only love…<br><br>
+        I love you Priti 💖😘
+      </h1>
+    `;
+  }
+</script>
 
 </body>
 </html>
